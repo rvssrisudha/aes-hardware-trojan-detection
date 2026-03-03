@@ -1,13 +1,4 @@
-/*
-Project        : AES
-Standard doc.  : FIPS 197
-Module name    : SubBytes block
-Dependancy     :
-Design doc.    : 
-References     : 
-Description    : uses SBox module to substitute every bytein the 128bit data
-Owner          : Amr Salah
-*/
+
 
 `timescale 1 ns/1 ps
 
