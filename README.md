@@ -12,33 +12,26 @@ System Architecture
 
 <img width="170" height="296" alt="image" src="https://github.com/user-attachments/assets/92b96d37-0bd7-4dc5-afe2-62eeed57afcb" />
 
-10-round pipelined AES-128 core
+a. 10-round pipelined AES-128 core
+b. Dedicated key expansion module
+c. Round-based transformation pipeline
+d. Trojan insertion at final round input stage
 
-Dedicated key expansion module
+Trojan Model:
 
-Round-based transformation pipeline
-
-Trojan insertion at final round input stage
-Trojan Model
-Trigger Mechanism
-
+A. Trigger Mechanism
 Activated when a specific 128-bit plaintext appears three times
-
 Counter-based sequential detection
-
 Persistent activation after trigger
 
-Payload Mechanism
-
+B. Payload Mechanism
 Overrides final round data path using bitwise injection
-
 Produces predictable corrupted ciphertext
-
 Enables recovery of 10th round key
-
 Original AES key reconstructed via reverse key expansion (Python)
 
-Experimental Flow
+Experimental Flow:
+
 RTL (Clean + Trojan)
         ↓
 Synopsys Design Compiler
@@ -50,62 +43,53 @@ VCS Simulation → VCD Activity
 PrimePower (Averaged Dynamic Power)
 PrimeTime (Time-Based Power)
 Power Analysis Results
+
 Averaged Dynamic Power (PrimePower)
-Design	Dynamic Power
-Clean AES	160145.58 µW
-Trojan Activated	160174.52 µW
+Design	                   Dynamic Power
+Clean AES	           160145.58 µW
+Trojan Activated	   160174.52 µW
 
 Measured Difference: 28.94 µW
 
+
 Time-Based Power (PrimeTime)
-Design	Power
-Clean AES	0.1266 W
+Design	                 Power
+Clean AES	        0.1266 W
 Trojan Activated	0.1267 W
 
 Measured Difference: 100 µW
 
+
 Key Observations
-
 Functional outputs remain correct during normal operation
-
 Power profiles nearly identical under non-trigger conditions
-
 Detectable power anomaly observed only during Trojan activation
-
 Demonstrates stealth behavior consistent with hardware security literature
 
 Repository Structure
 rtl/
- ├── common/
- ├── aes_clean/
- └── aes_trojan/
 
+ ├── common/
+ 
+ ├── aes_clean/
+ 
+ └── aes_trojan/
 tb/
 scripts/
 results/
 docs/
-Tools & Technologies
 
+Tools & Technologies: 
 SystemVerilog
-
 Synopsys Design Compiler
-
 Synopsys VCS
-
 Synopsys PrimePower
-
 Synopsys PrimeTime
-
 TCL scripting
-
 Python (Key reconstruction)
 
-Technical Significance
-
+Technical Significance:
 Demonstrates controlled RTL-level Trojan insertion
-
 Shows ASIC flow from RTL → Netlist → Power Analysis
-
 Validates power-based detection threshold
-
 Bridges cryptographic security and hardware verification
