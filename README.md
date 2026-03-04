@@ -96,7 +96,7 @@ tb/
 
 scripts/
 
-results/
+report.pptx
 
 docs/
 
