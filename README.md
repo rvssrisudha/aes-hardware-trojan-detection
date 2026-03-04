@@ -85,13 +85,19 @@ Measured Difference: **100 µW**
 
 ## Repository Structure
 rtl/
+
 ├── common/
+
 ├── aes_clean/
+
 └── aes_trojan/
 
 tb/
+
 scripts/
+
 results/
+
 docs/
 
 
